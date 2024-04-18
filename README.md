@@ -223,3 +223,89 @@ function insertAtBeginning<T>(array: T[], value: T){
   const updatedArray = insertAtBeginning(demoArray, 5)
 ```
 Here T is making sure that the new array would be of the same type as parameters due to the T
+
+## For React Functional component:
+```bash
+interface DndPropsType {
+  title: string;
+  droppableId: string;
+  taskList: TaskDataType[];
+  handleCreateOpenForm: () => void;
+  handleOpenUpdateForm: (droppableId: string) => void;
+  setTaskData: (taskData: TaskDataType) => void;
+  searchValue: string;
+}
+
+const Dnd: React.FC<DndPropsType> = ({
+  title,
+  droppableId,
+  taskList,
+  handleCreateOpenForm,
+  handleOpenUpdateForm,
+  setTaskData,
+  searchValue,
+}) => {// ...Rest of the code}
+```
+
+## For axios and useState
+```bash
+interface ProjectData {
+  id: string;
+  name: string;
+  description: string;
+}
+  const [projectsData, setProjectsData] = React.useState<AxiosResponse | null | void>();
+ async function fetchData() {
+    try {
+      const response: AxiosResponse<ProjectData[]> = await axios.get<
+        ProjectData[]
+      >('http://localhost:3000/projects');
+      console.log("Company's Data: ", response);
+      if (response.data.length === 0) setEmptyObj(true);
+      setProjectsData(response);
+    } catch (err) {
+      console.log(err);
+      throw new Error('Something went wrong!');
+    }
+  }
+```
+
+# For useContextHook:
+```bash
+interface ContextProps {
+  boardListName: string;
+  setBoardListName: (name: string) => void;
+  taskData: TaskDataType;
+  setTaskData: (data: TaskDataType) => void;
+  toDoList: TaskDataType[];
+  updatedToDoList: (list: TaskDataType[]) => void;
+  completeList: TaskDataType[];
+  updatedCompleteList: (list: TaskDataType[]) => void;
+  inProgressList: TaskDataType[];
+  updateInProgressList: (list: TaskDataType[]) => void;
+  reviewList: TaskDataType[];
+  updateReviewList: (list: TaskDataType[]) => void;
+}
+const Board = () => {
+  const {
+    boardListName,
+    setBoardListName,
+    taskData,
+    setTaskData,
+    toDoList,
+    updatedToDoList,
+    completeList,
+    updatedCompleteList,
+    inProgressList,
+    updateInProgressList,
+    reviewList,
+    updateReviewList,
+  } = useContextHook() as ContextProps; //<--- this is how you do
+  return({
+  //...rest if the code
+})
+```
+
+## For Functions
+type updateListFunction = (items: TaskDataType[]) => void;
+
