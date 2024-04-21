@@ -309,3 +309,20 @@ const Board = () => {
 ## For Functions
 type updateListFunction = (items: TaskDataType[]) => void;
 
+## For making a property optional 
+export interface TaskDataType {
+  assignee: teamMemberType | undefined;
+  description: string;
+  dueDate: string;
+  id: string;
+  name: string;
+  priority: priority | undefined;
+  reporter: teamMemberType | undefined;
+  startDate: string;
+  taskStatus: string;
+  labels: string;
+  department: string;
+  category: string;
+  teamMember?: teamMemberType; // <------- Making teamMember optional
+}
+
